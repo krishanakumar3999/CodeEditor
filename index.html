@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Live code editor</title>
+    <script src="https://kit.fontawesome.com/8cc5e13704.js" crossorigin="anonymous"></script>
+ </head>
+
+ <body>
+    <div class="container">
+        <div class="left">
+            <label><i class="fa-brands fa-html5" style="color: red"></i> HTML</label> 
+            <textarea id="html-code" onkeyup="run()"></textarea>
+            
+
+
+            <label><i class="fa-brands fa-css3-alt" style="color: blue"></i>CSS</label>
+            <textarea id="css-code" onkeyup="run()"></textarea>
+
+
+            <label><i class="fa-brands fa-js" style="color: yellow"></i>JavaScript</label>
+            <textarea id="js-code" onkeyup="run()"></textarea>
+        </div>
+
+    
+        <div>
+            <button onclick="Copy()">
+            <i class="fa-solid fa-copy" style="color: #6719c8;"></i>Copy</button>
+        </div>
+
+        <div>
+            <button onclick="disable()"id="btn"> 
+            <i class="fa-solid fa-unlock" style="color: #6719c8;"></i>unLock</button>
+        </div>
+
+        <div>
+            <button onclick="enable()"id="btn">
+            <i class="fa-solid fa-lock" style="color: #6719c8;"></i>Lock</button>
+        </div>
+
+        <div>
+            <button onclick="Save()">
+            <i class="fa-solid fa-save" style="color: #6719c8;"></i>Save</button>
+        </div>
+    
+
+        <div class="right">
+            <label><i class="fa-solid fa-play fa-beat-fade" style="color: lightgreen"></i> Output </label>
+            <iframe id="output"></iframe>
+        </div>
+    </div>
+
+    <script>
+
+        
+        function run(){
+            let htmlCode = document.getElementById("html-code").value;
+            let cssCode = document.getElementById("css-code").value;
+            let jsCode = document.getElementById("js-code").value;
+            let output = document.getElementById("output");
+            
+            output.contentDocument.body.innerHTML = htmlCode+"<style>"+cssCode +"</style>";
+            output.contentWindow.eval(jsCode);
+        }
+
+    
+        function Copy() {
+         // get the container
+         const element = document.querySelector('#html-code');
+         // Create a fake `textarea` and set the contents to the text
+         // you want to copy
+         const storage = document.createElement('textarea');
+         storage.value = element.innerHTML;
+         element.appendChild(storage);
+
+         // Copy the text in the fake `textarea` and remove the `textarea`
+         storage.select();
+         storage.setSelectionRange(0, 99999);
+         document.execCommand('copy');
+         element.removeChild(storage);
+        }
+
+        function Copy() {
+         // get the container
+          element = document.querySelector('#css-code');
+         // Create a fake `textarea` and set the contents to the text
+         // you want to copy
+         const storage = document.createElement('textarea');
+         storage.value = element.innerHTML;
+         element.appendChild(storage);
+
+         // Copy the text in the fake `textarea` and remove the `textarea`
+         storage.select();
+         storage.setSelectionRange(0, 99999);
+         document.execCommand('copy');
+         element.removeChild(storage);
+        }
+
+        function Copy() {
+         // get the container
+         const element = document.querySelector('#js-code');
+         // Create a fake `textarea` and set the contents to the text
+         // you want to copy
+         const storage = document.createElement('textarea');
+         storage.value = element.innerHTML;
+         element.appendChild(storage);
+
+         // Copy the text in the fake `textarea` and remove the `textarea`
+         storage.select();
+         storage.setSelectionRange(0, 99999);
+         document.execCommand('copy');
+         element.removeChild(storage);
+        }
+
+        function enable(){
+          document.getElementById("btn").disabled=true;
+        }
+
+        function disable(){
+         document.getElementsById("btn").disabled=false;
+        }
+
+
+        function Save() {
+         alert("Your Code is Successfully Saved!");
+        }
+
+    </script>
+
+</body>
+</html>
